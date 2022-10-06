@@ -24,13 +24,12 @@ public class Tarea1 {
         pedido.addArticulo(articulo);
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero","11.111.111-1",direccion1);
-        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", pedido);
-        
+        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", pedido, cliente1);
         
         OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO", pedido);
         Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente2 = new Cliente("Marge","22.222.222-2",direccion2);
-        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", pedido);
+        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", pedido, cliente2);
     }
     
 }
@@ -64,20 +63,22 @@ class Pedido {
 
 class OrdenCompra {
 
+    private Cliente cliente;
     private int fecha;
     private String estado;
     private Pedido pedido;
     protected LocalDate fecha;
         
-    public OrdenCompra(int fecha, String estado, Pedido pedido) {
+    public OrdenCompra(int fecha, String estado, Pedido pedido, Cliente cliente) {
         this.fecha = fecha;
         this.estado = estado;
         this.pedido = pedido;
         this.fecha = LocalDate.now();
+        this.cliente = cliente;
     }
-    //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
+     //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
     DetalleOrden detalleOrden = new DetalleOrden(pedido);
-
+    
     public float calcPrecioSinIVA() {
         return detalleOrden.calcPrecioSinIVA(pedido);
     }
@@ -95,6 +96,9 @@ class OrdenCompra {
     }
     public LocalDate getFecha() {
         return fecha;
+    }
+    public Cliente getCliente(){
+        return cliente;
     }
 }
 
@@ -198,7 +202,6 @@ class Articulo {
     private String nombre;
     private String descripcion;
     private float precio;
-
 
     public Articulo(float peso, String nombre, String descripcion, float precio) {
         this.peso = peso;
