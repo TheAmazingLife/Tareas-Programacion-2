@@ -6,53 +6,53 @@ public class Tarea1 {
 
     public static void main(String[] args) {
         
-        Bodega bodega = new Bodega();
+        Pedido pedido = new Pedido();
         
         Articulo articulo = new Articulo((float) 0.3,"Oso de peluche","Oso suavecito",4000);
-        bodega.addArticulo(articulo);
+        pedido.addArticulo(articulo);
         
         articulo = new Articulo((float) 0.6,"Celular","nuevo",180000);
-        bodega.addArticulo(articulo);
+        pedido.addArticulo(articulo);
         
         articulo = new Articulo((float) 0.5,"Perfume","Fragancia floral",25000);
-        bodega.addArticulo(articulo);
+        pedido.addArticulo(articulo);
         
         articulo = new Articulo((float) 0.5,"Polera","nuevo",15000);
-        bodega.addArticulo(articulo);
+        pedido.addArticulo(articulo);
         
         articulo = new Articulo((float) 0.8,"Jeans","nuevo",10000);
-        bodega.addArticulo(articulo);
-
-        Cliente cliente1 = new Cliente("Homero","11.111.111-1");
-        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", bodega);
+        pedido.addArticulo(articulo);
+        Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
+        Cliente cliente1 = new Cliente("Homero","11.111.111-1",direccion1);
+        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", pedido);
         
         
-        OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO", bodega);
-        
-        Cliente cliente2 = new Cliente("Marge","22.222.222-2");
-        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", bodega);
+        OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO", pedido);
+        Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
+        Cliente cliente2 = new Cliente("Marge","22.222.222-2",direccion2);
+        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", pedido);
     }
     
 }
-class Bodega {
+class Pedido {
 
-    private ArrayList<Articulo> bodega;
+    private ArrayList<Articulo> pedido;
     private int size;
-    public Bodega() {
+    public Pedido() {
         size = 0;
-        bodega = new ArrayList();
+        pedido = new ArrayList();
     }
 
     public void addArticulo(Articulo articulo) {
         size++;
-        bodega.add(articulo);
+        pedido.add(articulo);
     }
 
-    public Articulo getArticulo(int que) {
-        if (bodega.size() == 0) {
+    public Articulo getArticulo(int cual) {
+        if (pedido.size() == 0) {
             return null;
         } else {
-            Articulo articulo = bodega.get(que);
+            Articulo articulo = pedido.get(cual);
             return articulo;
         }
     }
@@ -66,32 +66,32 @@ class OrdenCompra {
 
     private int fecha;
     private String estado;
-    private Bodega bodega;
+    private Pedido pedido;
         
-    public OrdenCompra(int fecha, String estado, Bodega bodega) {
+    public OrdenCompra(int fecha, String estado, Pedido pedido) {
         this.fecha = fecha;
         this.estado = estado;
-        this.bodega = bodega;
+        this.pedido = pedido;
         //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
 
     }
     
-    DetalleOrden detalleOrden = new DetalleOrden(bodega);
+    DetalleOrden detalleOrden = new DetalleOrden(pedido);
 
     public float calcPrecioSinIVA() {
-        return detalleOrden.calcPrecioSinIVA(bodega);
+        return detalleOrden.calcPrecioSinIVA(pedido);
     }
 
     public float calcIVA() {
-        return detalleOrden.calcIVA(bodega);
+        return detalleOrden.calcIVA(pedido);
     }
 
     public float calcPrecio() {
-        return detalleOrden.calcPrecio(bodega);
+        return detalleOrden.calcPrecio(pedido);
     }
 
     public float calcPeso() {
-        return detalleOrden.calcPeso(bodega);
+        return detalleOrden.calcPeso(pedido);
     }
 }
 
@@ -99,18 +99,16 @@ class Cliente {
 
     private String nombre;
     private String rut;
-
-    public Cliente(String nombre, String rut) {
+    private String direccion;
+    
+    public Cliente(String nombre, String rut, Direccion direccion) {
         this.nombre = nombre;
         this.rut = rut;
     }
-
 }
 
 class Direccion {
-
     private String direccion;
-
     public Direccion(String direccion) {
         this.direccion = direccion;
     }
@@ -126,49 +124,49 @@ class DetalleOrden {
     private float peso;
     
     
-    public DetalleOrden(Bodega bodega) {
-        cantidad = bodega.getSize();
+    public DetalleOrden(Pedido pedido) {
+        cantidad = pedido.getSize();
         precioTotal = 0;
         precioSinIVA = 0;
         IVA = 0;
         peso = 0;
     }
     
-    public float calcPrecio(Bodega bodega) {
+    public float calcPrecio(Pedido pedido) {
         Articulo articulo = null;
-        for(int i = 0; i < bodega.getSize(); i++)
+        for(int i = 0; i < pedido.getSize(); i++)
         {
-            articulo = bodega.getArticulo(i);
+            articulo = pedido.getArticulo(i);
             precioTotal += articulo.getPrecio();
         }
         return (float) (precioTotal);
     }
     
-    public float calcPrecioSinIVA(Bodega bodega) {
+    public float calcPrecioSinIVA(Pedido pedido) {
         Articulo articulo = null;
-        for(int i = 0; i < bodega.getSize(); i++)
+        for(int i = 0; i < pedido.getSize(); i++)
         {
-            articulo = bodega.getArticulo(i);
+            articulo = pedido.getArticulo(i);
             precioSinIVA += articulo.getPrecio() * 0.81;
         }
         return  (float) (precioSinIVA);
     }
 
-    public float calcIVA(Bodega bodega) {
+    public float calcIVA(Pedido pedido) {
         Articulo articulo = null;
-        for(int i = 0; i < bodega.getSize(); i++)
+        for(int i = 0; i < pedido.getSize(); i++)
         {
-            articulo = bodega.getArticulo(i);
+            articulo = pedido.getArticulo(i);
             IVA += articulo.getPrecio() - articulo.getPrecio() * 0.81;
         }
         return  (float) (IVA);
     }
 
-    public float calcPeso(Bodega bodega) {
+    public float calcPeso(Pedido pedido) {
         Articulo articulo = null;
-        for(int i = 0; i < bodega.getSize(); i++)
+        for(int i = 0; i < pedido.getSize(); i++)
         {
-            articulo = bodega.getArticulo(i);
+            articulo = pedido.getArticulo(i);
             peso += articulo.getPeso();
         }
         return  (float) (peso);
