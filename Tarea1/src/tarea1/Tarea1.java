@@ -1,35 +1,49 @@
 package tarea1;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Tarea1 {
 
     public static void main(String[] args) {
         
-        Pedido pedido = new Pedido();
+        // para cliente 1
+        Pedido pedido1 = new Pedido();
+        Articulo articulo1 = new Articulo((float) 0.3,"Oso de peluche","Oso suavecito",4000);
+        Articulo articulo2 = new Articulo((float) 0.6,"Celular","nuevo",180000);
+        pedido1.addArticulo(articulo1);
+        pedido1.addArticulo(articulo2);
         
-        Articulo articulo = new Articulo((float) 0.3,"Oso de peluche","Oso suavecito",4000);
-        pedido.addArticulo(articulo);
-        
-        articulo = new Articulo((float) 0.6,"Celular","nuevo",180000);
-        pedido.addArticulo(articulo);
-        
-        articulo = new Articulo((float) 0.5,"Perfume","Fragancia floral",25000);
-        pedido.addArticulo(articulo);
-        
-        articulo = new Articulo((float) 0.5,"Polera","nuevo",15000);
-        pedido.addArticulo(articulo);
-        
-        articulo = new Articulo((float) 0.8,"Jeans","nuevo",10000);
-        pedido.addArticulo(articulo);
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero","11.111.111-1",direccion1);
-        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", pedido, cliente1);
+        OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1);
         
-        OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO", pedido);
+        System.out.println(ordenCompra1.ToString());
+        
+        
+        // para cliente 2
+        Pedido pedido2 = new Pedido();
+        Articulo articulo3 = new Articulo((float) 0.5,"Perfume","Fragancia floral",25000);
+        Articulo articulo4 = new Articulo((float) 0.5,"Polera","nuevo",15000);
+        pedido2.addArticulo(articulo3);
+        pedido2.addArticulo(articulo4);
+        
         Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente2 = new Cliente("Marge","22.222.222-2",direccion2);
-        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", pedido, cliente2);
+        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2);
+        
+        System.out.println(ordenCompra2.ToString());
+        
+        // para cliente 3
+        Pedido pedido3 = new Pedido();
+        Articulo articulo5 = new Articulo((float) 0.8,"Jeans","nuevo",10000);
+        pedido3.addArticulo(articulo5);
+        
+        Direccion direccion3 = new Direccion("Avenida Siempre Viva, #742");
+        Cliente cliente3 = new Cliente("Marge","22.222.222-2", direccion3);
+        OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3);
+        
+        System.out.println(ordenCompra3.ToString());
     }
     
 }
@@ -48,7 +62,7 @@ class Pedido {
     }
 
     public Articulo getArticulo(int cual) {
-        if (pedido.size() == 0) {
+        if (pedido.isEmpty()) {
             return null;
         } else {
             Articulo articulo = pedido.get(cual);
@@ -63,14 +77,13 @@ class Pedido {
 
 class OrdenCompra {
 
-    private Cliente cliente;
-    private int fecha;
+    private final Cliente cliente;
     private String estado;
     private Pedido pedido;
     protected LocalDate fecha;
         
-    public OrdenCompra(int fecha, String estado, Pedido pedido, Cliente cliente) {
-        this.fecha = fecha;
+    public OrdenCompra(String estado, Pedido pedido, Cliente cliente) {
+        this.fecha = LocalDate.now();
         this.estado = estado;
         this.pedido = pedido;
         this.fecha = LocalDate.now();
@@ -100,12 +113,17 @@ class OrdenCompra {
     public Cliente getCliente(){
         return cliente;
     }
+    public String ToString(){
+        String string = cliente.toString();
+        string += detalleOrden.ToString();
+        return string;
+    }
 }
 
 class Cliente {
 
-    private String nombre;
-    private String rut;
+    private final String nombre;
+    private final String rut;
     private String direccion;
     
     public Cliente(String nombre, String rut, Direccion direccion) {
@@ -122,7 +140,6 @@ class Cliente {
     public String getDireccion(){
         return direccion;
     }
-    public 
     
 }
 
@@ -152,7 +169,7 @@ class DetalleOrden {
     }
     
     public float calcPrecio(Pedido pedido) {
-        Articulo articulo = null;
+        Articulo articulo;
         for(int i = 0; i < pedido.getSize(); i++)
         {
             articulo = pedido.getArticulo(i);
@@ -162,7 +179,7 @@ class DetalleOrden {
     }
     
     public float calcPrecioSinIVA(Pedido pedido) {
-        Articulo articulo = null;
+        Articulo articulo;
         for(int i = 0; i < pedido.getSize(); i++)
         {
             articulo = pedido.getArticulo(i);
@@ -172,7 +189,7 @@ class DetalleOrden {
     }
 
     public float calcIVA(Pedido pedido) {
-        Articulo articulo = null;
+        Articulo articulo;
         for(int i = 0; i < pedido.getSize(); i++)
         {
             articulo = pedido.getArticulo(i);
@@ -182,7 +199,7 @@ class DetalleOrden {
     }
 
     public float calcPeso(Pedido pedido) {
-        Articulo articulo = null;
+        Articulo articulo;
         for(int i = 0; i < pedido.getSize(); i++)
         {
             articulo = pedido.getArticulo(i);
