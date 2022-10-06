@@ -16,8 +16,8 @@ class Efectivo extends Pago{
         this.monto += monto;
     }
 
-    public float calcDevolucion(OrdenCompra valorTotal) {
-        return monto-valorTotal.getCuota();
+    public float calcDevolucion(OrdenCompra ) {
+        return monto-; //pendiente
     }
     
     public String toString() {
@@ -44,9 +44,6 @@ class Transferencia extends Pago {
     public String getNumCuenta(){
         return numCuenta;
     }
-    public float calcDevolucion(OrdenCompra valorTotal) {
-        return monto-valorTotal.getCuota();
-    }
     public String toString() {
         return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
     }
@@ -71,22 +68,6 @@ class Tarjeta extends Pago {
     public String getNumTransaccion(){
         return numTransaccion;
     }
-    
-    public void Pago(OrdenCompra orden, int cuotas) {
-        if(cuotas < 0) System.out.println("Hno queri la vola grati XD");
-        else{
-            System.out.println("Total de cuotas a pagar: " + cuotas + "\n");
-            if (cuotas > 1) {
-                
-            } else {
-                if (orden.getPago() - monto > 0) {
-                    orden 
-                }
-            }
-        }
-        
-    }
-    
     public String toString() {
         return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n" +
                 "Tipo: "+ tipo + "Numero de Transaccion: " + fecha;
