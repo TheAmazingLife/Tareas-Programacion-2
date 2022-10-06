@@ -67,15 +67,15 @@ class OrdenCompra {
     private int fecha;
     private String estado;
     private Pedido pedido;
+    protected LocalDate fecha;
         
     public OrdenCompra(int fecha, String estado, Pedido pedido) {
         this.fecha = fecha;
         this.estado = estado;
         this.pedido = pedido;
-        //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
-
+        this.fecha = LocalDate.now();
     }
-    
+    //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
     DetalleOrden detalleOrden = new DetalleOrden(pedido);
 
     public float calcPrecioSinIVA() {
@@ -93,6 +93,9 @@ class OrdenCompra {
     public float calcPeso() {
         return detalleOrden.calcPeso(pedido);
     }
+    public LocalDate getFecha() {
+        return fecha;
+    }
 }
 
 class Cliente {
@@ -105,6 +108,18 @@ class Cliente {
         this.nombre = nombre;
         this.rut = rut;
     }
+    
+    public String getNombre(){
+        return nombre;
+    }
+    public String getRut(){
+        return rut;
+    }
+    public String getDireccion(){
+        return direccion;
+    }
+    public 
+    
 }
 
 class Direccion {
