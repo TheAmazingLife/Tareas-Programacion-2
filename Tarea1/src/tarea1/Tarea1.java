@@ -1,4 +1,10 @@
+import java.time.LocalDate;
+
 package tarea1;
+
+class Pago{
+    
+}
 
 public class Tarea1 {
 
