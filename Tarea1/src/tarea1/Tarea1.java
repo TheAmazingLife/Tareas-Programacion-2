@@ -1,46 +1,97 @@
 package tarea1;
 
+import java.util.ArrayList;
+
 public class Tarea1 {
 
     public static void main(String[] args) {
         
-        // creacion de ordenes de venta
-        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO");
-        OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO");
-        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO");
-        // creacion de compradores
+        Bodega bodega = new Bodega();
         
-        // creacion de productos diferentes
-        // creacion de pagos
+        Articulo articulo = new Articulo((float) 0.3,"Oso de peluche","Oso suavecito",4000);
+        bodega.addArticulo(articulo);
         
+        articulo = new Articulo((float) 0.6,"Celular","nuevo",180000);
+        bodega.addArticulo(articulo);
+        
+        articulo = new Articulo((float) 0.5,"Perfume","Fragancia floral",25000);
+        bodega.addArticulo(articulo);
+        
+        articulo = new Articulo((float) 0.5,"Polera","nuevo",15000);
+        bodega.addArticulo(articulo);
+        
+        articulo = new Articulo((float) 0.8,"Jeans","nuevo",10000);
+        bodega.addArticulo(articulo);
+
+        Cliente cliente1 = new Cliente("Homero","11.111.111-1");
+        OrdenCompra ordenCompra1 = new OrdenCompra(20,"PAGADO", bodega);
+        
+        
+        OrdenCompra ordenCompra2 = new OrdenCompra(21,"NO PAGADO", bodega);
+        
+        Cliente cliente2 = new Cliente("Marge","22.222.222-2");
+        OrdenCompra ordenCompra3 = new OrdenCompra(22,"PAGADO", bodega);
     }
     
+}
+class Bodega {
+
+    private ArrayList<Articulo> bodega;
+    private int size;
+    public Bodega() {
+        size = 0;
+        bodega = new ArrayList();
+    }
+
+    public void addArticulo(Articulo articulo) {
+        size++;
+        bodega.add(articulo);
+    }
+
+    public Articulo getArticulo(int que) {
+        if (bodega.size() == 0) {
+            return null;
+        } else {
+            Articulo articulo = bodega.get(que);
+            return articulo;
+        }
+    }
+    
+    public int getSize(){
+        return size;
+    }
 }
 
 class OrdenCompra {
 
     private int fecha;
     private String estado;
-
-    DocTributario doctributario = new DocTriburario(String numero , String rut , int fecha
-
-    ); 
-    
-    public OrdenCompra(int fecha, String estado) {
+    private Bodega bodega;
+        
+    public OrdenCompra(int fecha, String estado, Bodega bodega) {
         this.fecha = fecha;
         this.estado = estado;
+        this.bodega = bodega;
+        //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
+
+    }
+    
+    DetalleOrden detalleOrden = new DetalleOrden(bodega);
+
+    public float calcPrecioSinIVA() {
+        return detalleOrden.calcPrecioSinIVA(bodega);
     }
 
-    public void calcPrecioSinIVA() {
+    public float calcIVA() {
+        return detalleOrden.calcIVA(bodega);
     }
 
-    public void calcIVA() {
+    public float calcPrecio() {
+        return detalleOrden.calcPrecio(bodega);
     }
 
-    public void calcPrecio() {
-    }
-
-    public void calcPeso() {
+    public float calcPeso() {
+        return detalleOrden.calcPeso(bodega);
     }
 }
 
@@ -68,18 +119,63 @@ class Direccion {
 class DetalleOrden {
 
     private int cantidad;
-
-    public DetalleOrden(int cantidad) {
-        this.cantidad = cantidad;
+    
+    private float precioTotal;
+    private float precioSinIVA;
+    private float IVA;
+    private float peso;
+    
+    
+    public DetalleOrden(Bodega bodega) {
+        cantidad = bodega.getSize();
+        precioTotal = 0;
+        precioSinIVA = 0;
+        IVA = 0;
+        peso = 0;
+    }
+    
+    public float calcPrecio(Bodega bodega) {
+        Articulo articulo = null;
+        for(int i = 0; i < bodega.getSize(); i++)
+        {
+            articulo = bodega.getArticulo(i);
+            precioTotal += articulo.getPrecio();
+        }
+        return (float) (precioTotal);
+    }
+    
+    public float calcPrecioSinIVA(Bodega bodega) {
+        Articulo articulo = null;
+        for(int i = 0; i < bodega.getSize(); i++)
+        {
+            articulo = bodega.getArticulo(i);
+            precioSinIVA += articulo.getPrecio() * 0.81;
+        }
+        return  (float) (precioSinIVA);
     }
 
-    public void calcPrecioSinIVA() {
+    public float calcIVA(Bodega bodega) {
+        Articulo articulo = null;
+        for(int i = 0; i < bodega.getSize(); i++)
+        {
+            articulo = bodega.getArticulo(i);
+            IVA += articulo.getPrecio() - articulo.getPrecio() * 0.81;
+        }
+        return  (float) (IVA);
     }
 
-    public void calcIVA() {
+    public float calcPeso(Bodega bodega) {
+        Articulo articulo = null;
+        for(int i = 0; i < bodega.getSize(); i++)
+        {
+            articulo = bodega.getArticulo(i);
+            peso += articulo.getPeso();
+        }
+        return  (float) (peso);
     }
-
-    public void calcPeso() {
+    
+    public String ToString(){
+        return "Detalle de orden:\nCantidad: " + cantidad + "\nPrecio Total: " + precioTotal + "\nPrecio sin IVA: " + precioSinIVA + "\nPeso: " + peso + "\n";
     }
 }
 
@@ -88,14 +184,22 @@ class Articulo {
     private float peso;
     private String nombre;
     private String descripcion;
-    private String precio;
+    private float precio;
 
-    public Articulo(float peso, String nombre, String descripcion, String precio) {
+
+    public Articulo(float peso, String nombre, String descripcion, float precio) {
         this.peso = peso;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
     }
+    public float getPrecio(){
+        return precio;
+    }
+    public float getPeso(){
+        return peso;
+    }
+
 }
 
 class DocTributario {
