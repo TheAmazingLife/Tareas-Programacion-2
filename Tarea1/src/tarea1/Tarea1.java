@@ -16,10 +16,10 @@ public class Tarea1 {
         
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero","11.111.111-1",direccion1);
+        
         OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1);
-        
+        Efectivo efectivo = new Efectivo(10000, ordenCompra1);
         System.out.println(ordenCompra1.ToString());
-        
         
         // para cliente 2
         Pedido pedido2 = new Pedido();
@@ -30,8 +30,10 @@ public class Tarea1 {
         
         Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente2 = new Cliente("Marge","22.222.222-2",direccion2);
-        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2);
         
+        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2);
+        Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",10000, ordenCompra2);
+
         System.out.println(ordenCompra2.ToString());
         
         // para cliente 3
@@ -42,7 +44,7 @@ public class Tarea1 {
         Direccion direccion3 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente3 = new Cliente("Marge","22.222.222-2", direccion3);
         OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3);
-        
+        Tarjeta tarjeta = new Tarjeta("debito","0000", 100000, ordenCompra3);
         System.out.println(ordenCompra3.ToString());
     }
     
@@ -265,23 +267,28 @@ class Factura extends DocTributario {
 
 class Pago {
 
-    private float monto;
-    private int fecha;
-
-    public Pago(float monto, int fecha) {
+    protected float monto;
+    protected LocalDate fecha;
+    protected OrdenCompra ordenCompra;
+    public Pago(float monto, OrdenCompra ordenCompra) {
         this.monto = monto;
-        this.fecha = fecha;
+        this.ordenCompra = ordenCompra;
+        this.fecha = ordenCompra.getFecha();
     }
 }
 
 class Efectivo extends Pago {
 
-    public Efectivo() {
-
+    public Efectivo(float monto, OrdenCompra ordenCompra) {
+        super(monto, ordenCompra);
     }
 
-    public void calcDevolucion() {
-
+    public float calcDevolucion() {
+        float devolucion = 0;
+        if(monto > ordenCompra.calcPrecio()){
+            devolucion = ordenCompra.calcPrecio() - monto;
+        }
+        return devolucion;
     }
 
 }
@@ -291,7 +298,8 @@ class Transferencia extends Pago {
     private String banco;
     private String numCuenta;
 
-    public Transferencia(String banco, String numCuenta) {
+    public Transferencia(String banco, String numCuenta, float monto, OrdenCompra ordenCompra) {
+        super(monto, ordenCompra);
         this.banco = banco;
         this.numCuenta = numCuenta;
     }
@@ -302,7 +310,8 @@ class Tarjeta extends Pago {
     private String tipo;
     private String numTransaccion;
 
-    public Tarjeta(String tipo, String numTransaccion) {
+    public Tarjeta(String tipo, String numTransaccion, float monto, OrdenCompra ordenCompra) {
+        super(monto, ordenCompra);
         this.tipo = tipo;
         this.numTransaccion = numTransaccion;
     }
