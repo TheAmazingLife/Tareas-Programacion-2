@@ -48,6 +48,7 @@ class Factura extends DocTributario {
         this.fecha = orden.getFecha();
         this.direccion = orden.getCliente().getDireccion();
     }
+    
     public String toString(){
         return "Detalles Boleta.\nRut: " + rut + "Direccion: " + direccion + "Fecha: " + fecha;
     }
