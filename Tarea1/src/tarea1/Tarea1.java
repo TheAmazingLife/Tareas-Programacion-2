@@ -20,7 +20,6 @@ import java.time.LocalDate;
 public class Tarea1 {
 
     public static void main(String[] args) {
-        
         // para cliente 1
         Articulo articulo1 = new Articulo((float) 0.5, "Galletas", "Sabor Chocolate", 1590);
         Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
@@ -32,23 +31,33 @@ public class Tarea1 {
         ordenCompra1.anadirDetalle(2, articulo1);
         ordenCompra1.anadirDetalle(1, articulo2);
         
-        Efectivo efectivo = new Efectivo(10000, 0, ordenCompra1);
-        ordenCompra1.finalizarCompra();
+        Efectivo efectivo = new Efectivo(10000, 1, ordenCompra1);
         System.out.println(ordenCompra1.ToString());
-
+/*
         // para cliente 2
-        Articulo articulo3 = new Articulo((float) 2, "Bebida", "Sabor Coca - Cola", 1200);
-        Articulo articulo4 = new Articulo((float) 0.6, "Cerveza", "Marca Duff", 1000);
+        Pedido pedido2 = new Pedido();
+        Articulo articulo3 = new Articulo((float) 0.5, "Perfume", "Fragancia floral", 25000);
+        Articulo articulo4 = new Articulo((float) 0.5, "Polera", "nuevo", 15000);
+        pedido2.addArticulo(articulo3);
+        pedido2.addArticulo(articulo4);
 
-        Cliente cliente2 = new Cliente("Marge", "22.222.222-2", direccion1);
-        OrdenCompra ordenCompra2 = new OrdenCompra("EN CURSO", cliente2, 2);
-        
-        ordenCompra2.anadirDetalle(1, articulo3);
-        ordenCompra2.anadirDetalle(12, articulo4);
-        
-        Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",50000,0,ordenCompra2);
-        ordenCompra2.finalizarCompra();
+        Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
+        Cliente cliente2 = new Cliente("Marge", "22.222.222-2", direccion2);
+
+        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2, 2);
+        Transferencia transferencia = new Transferencia("Bancoestado", "22.222.222", 10000, 6, ordenCompra2);
+
         System.out.println(ordenCompra2.ToString());
-        
+
+        // para cliente 3
+        Pedido pedido3 = new Pedido();
+        Articulo articulo5 = new Articulo((float) 0.8, "Jeans", "nuevo", 10000);
+        pedido3.addArticulo(articulo5);
+
+        Direccion direccion3 = new Direccion("Avenida Siempre Viva, #742");
+        Cliente cliente3 = new Cliente("Marge", "22.222.222-2", direccion3);
+        OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3, 1);
+        Tarjeta tarjeta = new Tarjeta("debito", "0000", 100000, 2, ordenCompra3);
+        System.out.println(ordenCompra3.ToString());*/
     }
 }
