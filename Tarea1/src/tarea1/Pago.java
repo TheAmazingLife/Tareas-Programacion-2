@@ -1,7 +1,15 @@
+/*
+Contructor
+Pago pago = new Efectivo(float monto, int numeroCuotas, OrdenCompra ordenCompra);
+Pago pago = new Transferencia(String banco, String numCuenta, float monto, int numeroCuotas, OrdenCompra ordenCompra);
+Pago pago = new Tarjeta(String tipo, String numTransaccion, float monto, int numeroCuotas, OrdenCompra ordenCompra)
+ */
 package tarea1;
+
 import java.time.LocalDate;
 
 abstract class Pago {
+
     protected float monto;
     protected LocalDate fecha;
     protected OrdenCompra ordenCompra;
@@ -16,6 +24,7 @@ abstract class Pago {
 }
 
 class Efectivo extends Pago {
+
     public Efectivo(float monto, int numeroCuotas, OrdenCompra ordenCompra) {
         super(monto, numeroCuotas, ordenCompra);
     }
@@ -42,6 +51,7 @@ class Efectivo extends Pago {
 }
 
 class Transferencia extends Pago {
+
     private String banco;
     private String numCuenta;
 
@@ -120,8 +130,8 @@ class Tarjeta extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n" +
-                "Tipo: " + tipo + "Numero de Transaccion: " + fecha;
+        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n"
+                + "Tipo: " + tipo + "Numero de Transaccion: " + fecha;
     }
 }
 

@@ -1,3 +1,7 @@
+/*
+Contructor
+OrdenCompra ordenCompra = new OrdenCompra(String estado, Cliente cliente, int doc);
+ */
 package tarea1;
 
 import java.time.LocalDate;

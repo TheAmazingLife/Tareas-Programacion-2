@@ -1,3 +1,7 @@
+/*
+Contructor
+Cliente cliente = new Cliente(String nombre, String rut, Direccion direccion);
+*/
 package tarea1;
 
 //hola
