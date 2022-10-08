@@ -17,7 +17,7 @@ public class Tarea1 {
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero","11.111.111-1",direccion1);
         
-        OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1);
+        OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1,1);
         Efectivo efectivo = new Efectivo(10000, ordenCompra1);
         System.out.println(ordenCompra1.ToString());
         
@@ -31,7 +31,7 @@ public class Tarea1 {
         Direccion direccion2 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente2 = new Cliente("Marge","22.222.222-2",direccion2);
         
-        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2);
+        OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2,2);
         Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",10000, ordenCompra2);
 
         System.out.println(ordenCompra2.ToString());
@@ -43,7 +43,7 @@ public class Tarea1 {
         
         Direccion direccion3 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente3 = new Cliente("Marge","22.222.222-2", direccion3);
-        OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3);
+        OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3,1);
         Tarjeta tarjeta = new Tarjeta("debito","0000", 100000, ordenCompra3);
         System.out.println(ordenCompra3.ToString());
     }
@@ -52,14 +52,11 @@ public class Tarea1 {
 class Pedido {
 
     private ArrayList<Articulo> pedido;
-    private int size;
     public Pedido() {
-        size = 0;
         pedido = new ArrayList();
     }
 
     public void addArticulo(Articulo articulo) {
-        size++;
         pedido.add(articulo);
     }
 
@@ -72,8 +69,8 @@ class Pedido {
         }
     }
     
-    public int getSize(){
-        return size;
+    public ArrayList<Articulo> getPedido(){
+        return pedido;
     }
 }
 
@@ -84,12 +81,24 @@ class OrdenCompra {
     private Pedido pedido;
     protected LocalDate fecha;
         
-    public OrdenCompra(String estado, Pedido pedido, Cliente cliente) {
+    public OrdenCompra(String estado, Pedido pedido, Cliente cliente, int doc) {
         this.fecha = LocalDate.now();
         this.estado = estado;
         this.pedido = pedido;
         this.fecha = LocalDate.now();
         this.cliente = cliente;
+        
+        DocTributario docTributario = null;
+        switch (doc) {
+            case 1:
+                docTributario = new Boleta("111",cliente.getRut(),fecha);
+                break;
+            case 2:
+                docTributario = new Factura("111",cliente.getRut(),fecha);
+                break;
+        }
+        
+        
     }
      //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
     DetalleOrden detalleOrden = new DetalleOrden(pedido);
@@ -124,8 +133,8 @@ class OrdenCompra {
 
 class Cliente {
 
-    private final String nombre;
-    private final String rut;
+    private String nombre;
+    private String rut;
     private String direccion;
     
     public Cliente(String nombre, String rut, Direccion direccion) {
@@ -163,7 +172,8 @@ class DetalleOrden {
     
     
     public DetalleOrden(Pedido pedido) {
-        cantidad = pedido.getSize();
+        ArrayList<Articulo> compras = pedido.getPedido();
+        cantidad = compras.size();
         precioTotal = 0;
         precioSinIVA = 0;
         IVA = 0;
@@ -172,7 +182,8 @@ class DetalleOrden {
     
     public float calcPrecio(Pedido pedido) {
         Articulo articulo;
-        for(int i = 0; i < pedido.getSize(); i++)
+        ArrayList<Articulo> compras = pedido.getPedido();
+        for(int i = 0; i < compras.size(); i++)
         {
             articulo = pedido.getArticulo(i);
             precioTotal += articulo.getPrecio();
@@ -182,7 +193,8 @@ class DetalleOrden {
     
     public float calcPrecioSinIVA(Pedido pedido) {
         Articulo articulo;
-        for(int i = 0; i < pedido.getSize(); i++)
+        ArrayList<Articulo> compras = pedido.getPedido();
+        for(int i = 0; i < compras.size(); i++)
         {
             articulo = pedido.getArticulo(i);
             precioSinIVA += articulo.getPrecio() * 0.81;
@@ -192,7 +204,8 @@ class DetalleOrden {
 
     public float calcIVA(Pedido pedido) {
         Articulo articulo;
-        for(int i = 0; i < pedido.getSize(); i++)
+        ArrayList<Articulo> compras = pedido.getPedido();
+        for(int i = 0; i < compras.size(); i++)
         {
             articulo = pedido.getArticulo(i);
             IVA += articulo.getPrecio() - articulo.getPrecio() * 0.81;
@@ -202,7 +215,8 @@ class DetalleOrden {
 
     public float calcPeso(Pedido pedido) {
         Articulo articulo;
-        for(int i = 0; i < pedido.getSize(); i++)
+        ArrayList<Articulo> compras = pedido.getPedido();
+        for(int i = 0; i < compras.size(); i++)
         {
             articulo = pedido.getArticulo(i);
             peso += articulo.getPeso();
@@ -241,9 +255,9 @@ class DocTributario {
 
     private String numero;
     private String rut;
-    private int fecha;
+    private LocalDate fecha;
 
-    public DocTributario(String numero, String rut, int fecha) {
+    public DocTributario(String numero, String rut, LocalDate fecha) {
         this.numero = numero;
         this.rut = rut;
         this.fecha = fecha;
@@ -253,15 +267,15 @@ class DocTributario {
 
 class Boleta extends DocTributario {
 
-    public Boleta() {
-
+    public Boleta(String numero, String rut, LocalDate fecha) {
+        super(numero, rut, fecha);
     }
 }
 
 class Factura extends DocTributario {
 
-    public Factura() {
-
+    public Factura(String numero, String rut, LocalDate fecha) {
+        super(numero, rut, fecha);
     }
 }
 
