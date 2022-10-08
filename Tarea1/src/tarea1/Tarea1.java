@@ -24,7 +24,7 @@ public class Tarea1 {
         
         // para cliente 1
         Articulo articulo1 = new Articulo((float) 0.5, "Galletas", "Sabor Chocolate", 1590);
-        Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
+        Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 700);
 
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero Simpson", "11.111.111-1", direccion1);
