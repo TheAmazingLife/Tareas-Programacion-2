@@ -13,6 +13,7 @@ class OrdenCompra {
     private String estado;
     protected LocalDate fecha;
     protected ArrayList<DetalleOrden> pedido;
+    DocTributario docTributario = null;
 
     public OrdenCompra(String estado, Cliente cliente, int doc) {
         this.fecha = LocalDate.now();
@@ -20,8 +21,6 @@ class OrdenCompra {
         this.fecha = LocalDate.now();
         this.cliente = cliente;
         pedido = new ArrayList();
-
-        DocTributario docTributario = null;
 
         switch (doc) {
             case 1:
@@ -89,6 +88,7 @@ class OrdenCompra {
         for (int i = 0; i < pedido.size(); i++) {
             string += pedido.get(i).toString();
         }
+        string += docTributario.toString();
         return string;
     }
 }
