@@ -5,9 +5,10 @@ import java.util.ArrayList;
 class Pedido {
 
     private ArrayList<Articulo> pedido;
-
+    
     public Pedido() {
-        pedido = new ArrayList();
+        pedido = new ArrayList<Articulo>();
+        System.out.println("Homero: "+pedido.size());
     }
 
     public void addArticulo(Articulo articulo) {
