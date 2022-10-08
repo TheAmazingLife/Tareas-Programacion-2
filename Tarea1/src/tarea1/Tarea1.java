@@ -50,5 +50,20 @@ public class Tarea1 {
         ordenCompra2.finalizarCompra();
         System.out.println(ordenCompra2.ToString());
         
+        // para cliente 2 (de nuevo)
+        Articulo articulo5 = new Articulo((float) 0.6, "Krusty Burger", "Sabor clasico", 1750);
+        Articulo articulo6 = new Articulo((float) 0.3, "Rosquillas", "rosada", 1500);
+
+        OrdenCompra ordenCompra3 = new OrdenCompra("EN CURSO", cliente2, 2);
+        
+        ordenCompra3.anadirDetalle(4, articulo5);
+        ordenCompra3.anadirDetalle(10, articulo6);
+        
+        Tarjeta tarjeta = new Tarjeta("DEBITO","#1111",23000,1,ordenCompra3);
+        ordenCompra3.finalizarCompra();
+        System.out.println(ordenCompra3.ToString());
+        
+        
+        
     }
 }
