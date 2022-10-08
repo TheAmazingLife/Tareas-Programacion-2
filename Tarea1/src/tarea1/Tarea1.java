@@ -24,7 +24,7 @@ public class Tarea1 {
         
         // para cliente 1
         Articulo articulo1 = new Articulo((float) 0.5, "Galletas", "Sabor Chocolate", 1590);
-        Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
+        Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 700);
 
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero Simpson", "11.111.111-1", direccion1);
@@ -48,7 +48,7 @@ public class Tarea1 {
         ordenCompra2.anadirDetalle(1, articulo3);
         ordenCompra2.anadirDetalle(12, articulo4);
         
-        Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",50000,0,ordenCompra2);
+        Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",13200,0,ordenCompra2);
         ordenCompra2.finalizarCompra();
         System.out.println(transferencia.toString());
         System.out.println(ordenCompra2.toString());
@@ -62,11 +62,27 @@ public class Tarea1 {
         ordenCompra3.anadirDetalle(4, articulo5);
         ordenCompra3.anadirDetalle(10, articulo6);
         
-        Tarjeta tarjeta = new Tarjeta("DEBITO","#1111",23000,1,ordenCompra3);
+        Tarjeta tarjeta1 = new Tarjeta("DEBITO","#1111",22000,1,ordenCompra3);
         ordenCompra3.finalizarCompra();
         
-        System.out.println(tarjeta.toString());
+        System.out.println(tarjeta1.toString());
         System.out.println(ordenCompra3.toString());
+        
+         // para cliente 3
+        Articulo articulo7 = new Articulo((float) 0.6, "Pizza", "Pepperoni ", 13500);
+        
+        Direccion direccion2 = new Direccion("308 de Negra Arroyo Lane");
+        Cliente cliente3 = new Cliente("Walter White", "33.333.333-3", direccion2);
+        
+        OrdenCompra ordenCompra4 = new OrdenCompra("EN CURSO", cliente3, 1);
+        
+        ordenCompra4.anadirDetalle(1, articulo7);
+        
+        Tarjeta tarjeta2 = new Tarjeta("DEBITO","#1112",13500,1,ordenCompra4);
+        ordenCompra4.finalizarCompra();
+        
+        System.out.println(tarjeta2.toString());
+        System.out.println(ordenCompra4.toString());
         
     }
 }
