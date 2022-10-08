@@ -44,7 +44,7 @@ class Boleta extends DocTributario {
     }
 
     public String toString() {
-        return "Detalles Boleta. Rut: " + rut + " Direccion: " + direccion.getDireccion() + " Fecha: " + fecha +  "\n";
+        return "Detalles Boleta.\nRut: " + rut + " Direccion: " + direccion.getDireccion() + " Fecha: " + fecha +  "\n";
     }
 }
 
@@ -55,6 +55,6 @@ class Factura extends DocTributario {
     }
 
     public String toString() {
-        return "Detalles Factura. Rut: " + rut + " Direccion: " + direccion.getDireccion() + " Fecha: " + fecha + "\n";
+        return "Detalles Factura.\nRut: " + rut + " Direccion: " + direccion.getDireccion() + " Fecha: " + fecha + "\n";
     }
 }

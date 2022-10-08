@@ -34,8 +34,8 @@ class DetalleOrden {
         return (float) (peso);
     }
 
-    public String toString() {
-        return "Articulo: " + articulo.getNombre() + " Cantidad: " + cantidad + " Precio Total: $" + calcPrecio() + " Precio sin IVA: $"
+    public String toString(int pos) {
+        return (pos+1) + ".- Articulo: " + articulo.getNombre() + " Cantidad: " + cantidad + " Precio Total: $" + calcPrecio() + " Precio sin IVA: $"
                 + calcPrecioSinIVA() + " Iva: $" + calcIVA() + " Peso: " + calcPeso() + " Kg.\n";
     }
 }

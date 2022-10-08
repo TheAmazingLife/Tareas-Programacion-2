@@ -83,12 +83,12 @@ class OrdenCompra {
 
     public String toString() {
         String string = cliente.toString();
+        string += docTributario.toString();
         string += "Estado de la compra: "  + estado + " \n";
         string += "Detalle de orden: \n";
         for (int i = 0; i < pedido.size(); i++) {
-            string += pedido.get(i).toString();
+            string += pedido.get(i).toString(i);
         }
-        string += docTributario.toString();
         return string;
     }
 }

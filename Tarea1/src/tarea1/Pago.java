@@ -42,7 +42,7 @@ class Efectivo extends Pago {
     }
 
     public String toString() {
-        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + " Vuelto: $" + calcDevolucion() + "\n";
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + " Vuelto: $" + calcDevolucion() + "\n";
     }
 }
 
@@ -66,7 +66,7 @@ class Transferencia extends Pago {
     }
 
     public String toString() {
-        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
                 + " Banco: " + banco + " Numero de cuenta: " + numCuenta + "\n";
     }
 }
@@ -95,14 +95,11 @@ class Tarjeta extends Pago {
     }
 
     public String toString() {
-        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
                 + "Tipo: " + tipo + " Numero de Transaccion: " + fecha + "\n";
     }
 }
 
 /*
- * Agregar el numero de cuotas en el main Efectivo efectivo = new
- * Efectivo(monto, nroCuotas, ordenCompra);
- * Modificar los constructores en el main de transaccion efectivo y tarjeta
- * Constructor de Pago actualizado
+METODO calcular numero de cuotas PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
  */
