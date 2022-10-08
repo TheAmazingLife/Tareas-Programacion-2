@@ -13,6 +13,7 @@
                 /=\ /=\ /=\         | | | 
 ________________[_]_[_]_[_]________/_]_[_\_________________________
 */
+
 package tarea1;
 
 import java.time.LocalDate;
@@ -34,7 +35,8 @@ public class Tarea1 {
         
         Efectivo efectivo = new Efectivo(10000, 0, ordenCompra1);
         ordenCompra1.finalizarCompra();
-        System.out.println(ordenCompra1.ToString());
+        System.out.println(efectivo.toString());
+        System.out.println(ordenCompra1.toString());
 
         // para cliente 2
         Articulo articulo3 = new Articulo((float) 2, "Bebida", "Sabor Coca - Cola", 1200);
@@ -48,7 +50,8 @@ public class Tarea1 {
         
         Transferencia transferencia = new Transferencia("Bancoestado","22.222.222",50000,0,ordenCompra2);
         ordenCompra2.finalizarCompra();
-        System.out.println(ordenCompra2.ToString());
+        System.out.println(transferencia.toString());
+        System.out.println(ordenCompra2.toString());
         
         // para cliente 2 (de nuevo)
         Articulo articulo5 = new Articulo((float) 0.6, "Krusty Burger", "Sabor clasico", 1750);
@@ -62,9 +65,8 @@ public class Tarea1 {
         Tarjeta tarjeta = new Tarjeta("DEBITO","#1111",23000,1,ordenCompra3);
         ordenCompra3.finalizarCompra();
         
-        System.out.println(ordenCompra3.ToString());
-        
-        
+        System.out.println(tarjeta.toString());
+        System.out.println(ordenCompra3.toString());
         
     }
 }

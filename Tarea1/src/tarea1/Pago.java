@@ -31,7 +31,7 @@ class Efectivo extends Pago {
 
     public float calcDevolucion() {
         float devolucion = 0;
-        if (numeroCuotas == 0) {
+        if (numeroCuotas == 1) {
             if (monto > ordenCompra.calcPrecio()) {
                 devolucion = ordenCompra.calcPrecio() - monto;
             }
@@ -46,7 +46,7 @@ class Efectivo extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + "\n";
+        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + " Vuelto: $" + calcDevolucion() + "\n";
     }
 }
 
@@ -69,24 +69,9 @@ class Transferencia extends Pago {
         return numCuenta;
     }
 
-    public float calcDevolucion() {
-        float devolucion = 0;
-        if (numeroCuotas == 0) {
-            if (monto > ordenCompra.calcPrecio()) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            } else {
-                float valorCuota = 0;
-                valorCuota = ordenCompra.calcPrecio() / numeroCuotas;
-                if (monto >= valorCuota) {
-                    devolucion = ordenCompra.calcPrecio() - monto;
-                }
-            }
-        }
-        return devolucion;
-    }
 
     public String toString() {
-        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
+        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
                 + " Banco: " + banco+ " Numero de cuenta: " + numCuenta + "\n";
     }
 }
@@ -131,7 +116,7 @@ class Tarjeta extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
+        return "Pago. Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
                 + "Tipo: " + tipo + "Numero de Transaccion: " + fecha + "\n";
     }
 }
