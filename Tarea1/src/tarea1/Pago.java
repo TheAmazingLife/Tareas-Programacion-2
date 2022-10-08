@@ -46,7 +46,7 @@ class Efectivo extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
+        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + "\n";
     }
 }
 
@@ -86,7 +86,8 @@ class Transferencia extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
+        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
+                + " Banco: " + banco+ " Numero de cuenta: " + numCuenta + "\n";
     }
 }
 
@@ -130,8 +131,8 @@ class Tarjeta extends Pago {
     }
 
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n"
-                + "Tipo: " + tipo + "Numero de Transaccion: " + fecha;
+        return "Dinero: " + monto + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha 
+                + "Tipo: " + tipo + "Numero de Transaccion: " + fecha + "\n";
     }
 }
 
