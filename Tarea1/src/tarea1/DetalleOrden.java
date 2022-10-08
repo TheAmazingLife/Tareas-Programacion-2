@@ -18,7 +18,7 @@ class DetalleOrden {
 
     public float calcPrecio(Pedido pedido) {
         Articulo articulo;
-        for (int i = 0; i < pedido.getSize(); i++) {
+        for (int i = 0; i < cantidad; i++) {
             articulo = pedido.getArticulo(i);
             precioTotal += articulo.getPrecio();
         }
@@ -27,7 +27,7 @@ class DetalleOrden {
 
     public float calcPrecioSinIVA(Pedido pedido) {
         Articulo articulo;
-        for (int i = 0; i < pedido.getSize(); i++) {
+        for (int i = 0; i < cantidad; i++) {
             articulo = pedido.getArticulo(i);
             precioSinIVA += articulo.getPrecio() * 0.81;
         }

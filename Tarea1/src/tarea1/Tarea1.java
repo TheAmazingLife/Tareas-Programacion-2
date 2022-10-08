@@ -31,7 +31,7 @@ public class Tarea1 {
         Cliente cliente1 = new Cliente("Homero", "11.111.111-1", direccion1);
 
         OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1, 1);
-        Efectivo efectivo = new Efectivo(10000, ordenCompra1);
+        Efectivo efectivo = new Efectivo(10000, 1, ordenCompra1);
         System.out.println(ordenCompra1.ToString());
 
         // para cliente 2
@@ -45,7 +45,7 @@ public class Tarea1 {
         Cliente cliente2 = new Cliente("Marge", "22.222.222-2", direccion2);
 
         OrdenCompra ordenCompra2 = new OrdenCompra("PAGADO", pedido2, cliente2, 2);
-        Transferencia transferencia = new Transferencia("Bancoestado", "22.222.222", 10000, ordenCompra2);
+        Transferencia transferencia = new Transferencia("Bancoestado", "22.222.222", 10000, 6, ordenCompra2);
 
         System.out.println(ordenCompra2.ToString());
 
@@ -57,7 +57,7 @@ public class Tarea1 {
         Direccion direccion3 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente3 = new Cliente("Marge", "22.222.222-2", direccion3);
         OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3, 1);
-        Tarjeta tarjeta = new Tarjeta("debito", "0000", 100000, ordenCompra3);
+        Tarjeta tarjeta = new Tarjeta("debito", "0000", 100000, 2, ordenCompra3);
         System.out.println(ordenCompra3.ToString());
     }
 }
