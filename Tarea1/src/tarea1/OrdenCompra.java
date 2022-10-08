@@ -85,6 +85,7 @@ class OrdenCompra {
     public String ToString() {
         String string = cliente.toString();
         string += "Estado de la compra: "  + estado + " \n";
+        string += "Detalle de orden: \n";
         for (int i = 0; i < pedido.size(); i++) {
             string += pedido.get(i).toString();
         }

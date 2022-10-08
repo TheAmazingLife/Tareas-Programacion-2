@@ -35,7 +35,7 @@ class DetalleOrden {
     }
 
     public String toString() {
-        return "Detalle de orden: " + articulo.getNombre() + " Cantidad: " + cantidad + " Precio Total: $" + calcPrecio() + " Precio sin IVA: $"
+        return "Articulo: " + articulo.getNombre() + " Cantidad: " + cantidad + " Precio Total: $" + calcPrecio() + " Precio sin IVA: $"
                 + calcPrecioSinIVA() + " Iva: $" + calcIVA() + " Peso: " + calcPeso() + " Kg.\n";
     }
 }
