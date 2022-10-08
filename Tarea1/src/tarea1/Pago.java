@@ -1,5 +1,5 @@
-import java.time.LocalDate;
 package tarea1;
+import java.time.LocalDate;
 
 abstract class Pago {
     protected float monto;
@@ -7,10 +7,11 @@ abstract class Pago {
     protected OrdenCompra ordenCompra;
     protected int numeroCuotas;
 
-    public Pago(float monto, OrdenCompra ordenCompra) {
+    public Pago(float monto, int numeroCuotas, OrdenCompra ordenCompra) {
         this.monto = monto;
-        this.ordenCompra = ordenCompra;
         this.fecha = ordenCompra.getFecha();
+        this.ordenCompra = ordenCompra;
+        this.numeroCuotas = numeroCuotas;
     }
 }
 
@@ -70,8 +71,8 @@ class Transferencia extends Pago {
                     devolucion = ordenCompra.calcPrecio() - monto;
                 }
             }
-            return devolucion;
         }
+        return devolucion;
     }
 
     public String toString() {
