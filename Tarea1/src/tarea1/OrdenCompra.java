@@ -16,13 +16,12 @@ class OrdenCompra {
         this.fecha = LocalDate.now();
         this.cliente = cliente;
         
-        DocTributario docTributario = null;
         switch (doc) {
             case 1:
-                docTributario = new Boleta("111",cliente.getRut(),fecha);
+                DocTributario docTributario = new Boleta("111",cliente.getRut(),fecha);
                 break;
             case 2:
-                docTributario = new Factura("111",cliente.getRut(),fecha);
+                DocTributario docTributario = new Factura("111",cliente.getRut(),fecha);
                 break;
         }   
     }
@@ -53,7 +52,7 @@ class OrdenCompra {
     }
     public String ToString(){
         String string = cliente.toString();
-        string += detalleOrden.ToString();
+        string += detalleOrden.toString();
         return string;
     }
 }

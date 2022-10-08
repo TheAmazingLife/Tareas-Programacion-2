@@ -25,7 +25,7 @@ class Pedido {
         return pedido;
     }
     public int getSize(){
-        return pedido.size;
+        return pedido.size();
     }
 }
 

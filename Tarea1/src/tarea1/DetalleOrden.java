@@ -57,7 +57,7 @@ class DetalleOrden {
         return  (float) (peso);
     }
     
-    public String ToString(){
+    public String toString(){
         return "Detalle de orden:\nCantidad: " + cantidad + "\nPrecio Total: " + precioTotal + "\nPrecio sin IVA: " + precioSinIVA + "\nPeso: " + peso + "\n";
     }
 }

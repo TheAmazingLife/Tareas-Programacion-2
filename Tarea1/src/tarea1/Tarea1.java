@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 package tarea1;
 
 import java.time.LocalDate;
