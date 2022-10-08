@@ -25,7 +25,7 @@ public class Tarea1 {
         Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
 
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
-        Cliente cliente1 = new Cliente("Homero", "11.111.111-1", direccion1);
+        Cliente cliente1 = new Cliente("Homero Simpson", "11.111.111-1", direccion1);
         OrdenCompra ordenCompra1 = new OrdenCompra("EN CURSO", cliente1, 1);
         
         ordenCompra1.anadirDetalle(2, articulo1);
