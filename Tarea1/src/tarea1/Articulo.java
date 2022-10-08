@@ -13,26 +13,32 @@ class Articulo {
         this.descripcion = descripcion;
         this.precio = precio;
     }
-    public float getPrecio(){
+
+    public float getPrecio() {
         return precio;
     }
-    public float getPeso(){
+
+    public float getPeso() {
         return peso;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    public String getDescripcion(){
+
+    public String getDescripcion() {
         return descripcion;
     }
-    public String toString(){
+
+    public String toString() {
         return "Articulo: " + nombre + " " + descripcion + " " + precio + " " + peso + "\n";
     }
 
 }
 
 /*
-New Feature: 
-.toString() devuelve nombre descripcion precio peso.
-.getDescripcion() y .getNombre devuelve la descripcion y el nombre respectivamente
-*/
+ * New Feature:
+ * .toString() devuelve nombre descripcion precio peso.
+ * .getDescripcion() y .getNombre devuelve la descripcion y el nombre
+ * respectivamente
+ */

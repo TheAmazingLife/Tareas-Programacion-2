@@ -5,6 +5,7 @@ import java.util.ArrayList;
 class Pedido {
 
     private ArrayList<Articulo> pedido;
+
     public Pedido() {
         pedido = new ArrayList();
     }
@@ -21,16 +22,18 @@ class Pedido {
             return articulo;
         }
     }
-    public ArrayList<Articulo> getPedido(){
+
+    public ArrayList<Articulo> getPedido() {
         return pedido;
     }
-    public int getSize(){
+
+    public int getSize() {
         return pedido.size();
     }
 }
 
 /*
-new features:
-getSize() devuelve la longitud del pedido
-getPedido() devuelve el array list con el pedido
-*/
+ * new features:
+ * getSize() devuelve la longitud del pedido
+ * getPedido() devuelve el array list con el pedido
+ */
