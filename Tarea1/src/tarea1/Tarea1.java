@@ -21,19 +21,19 @@ public class Tarea1 {
 
     public static void main(String[] args) {
         // para cliente 1
-        Pedido pedido1 = new Pedido();
-        Articulo articulo1 = new Articulo((float) 0.3, "Oso de peluche", "Oso suavecito", 4000);
-        Articulo articulo2 = new Articulo((float) 0.6, "Celular", "nuevo", 180000);
-        pedido1.addArticulo(articulo1);
-        pedido1.addArticulo(articulo2);
+        Articulo articulo1 = new Articulo((float) 0.5, "Galletas", "Sabor Chocolate", 1590);
+        Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
 
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
         Cliente cliente1 = new Cliente("Homero", "11.111.111-1", direccion1);
-
-        OrdenCompra ordenCompra1 = new OrdenCompra("PAGADO", pedido1, cliente1, 1);
+        OrdenCompra ordenCompra1 = new OrdenCompra("EN CURSO", cliente1, 1);
+        
+        ordenCompra1.anadirDetalle(2, articulo1);
+        ordenCompra1.anadirDetalle(1, articulo2);
+        
         Efectivo efectivo = new Efectivo(10000, 1, ordenCompra1);
         System.out.println(ordenCompra1.ToString());
-
+/*
         // para cliente 2
         Pedido pedido2 = new Pedido();
         Articulo articulo3 = new Articulo((float) 0.5, "Perfume", "Fragancia floral", 25000);
@@ -58,6 +58,6 @@ public class Tarea1 {
         Cliente cliente3 = new Cliente("Marge", "22.222.222-2", direccion3);
         OrdenCompra ordenCompra3 = new OrdenCompra("PAGADO", pedido3, cliente3, 1);
         Tarjeta tarjeta = new Tarjeta("debito", "0000", 100000, 2, ordenCompra3);
-        System.out.println(ordenCompra3.ToString());
+        System.out.println(ordenCompra3.ToString());*/
     }
 }
