@@ -1,5 +1,5 @@
 
-# Tareas Programacion 2
+# Tareas Programacion II
 
 Repositorio con las Tareas de la asignatura Programacion 2 de la carrera Ingenieria Civil Informatica de la Universidad de Concepcion
 
