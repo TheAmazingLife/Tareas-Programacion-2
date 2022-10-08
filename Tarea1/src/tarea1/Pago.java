@@ -75,15 +75,10 @@ class Transferencia extends Pago {
 }
 
 class Tarjeta extends Pago {
+    
     private String tipo;
     private String numTransaccion;
-
-    public Tarjeta(String tipo, String numTransaccion) {
-        super();
-        this.tipo = tipo;
-        this.numTransaccion = numTransaccion;
-        fecha = LocalDate.now();
-    }
+    
     public Tarjeta(String tipo, String numTransaccion, float monto, int numeroCuotas, OrdenCompra ordenCompra) {
         super(monto, numeroCuotas, ordenCompra);
         this.tipo = tipo;
