@@ -26,7 +26,7 @@ public class Tarea1 {
         Articulo articulo2 = new Articulo((float) 0.5, "Jugo", "Sabor Frambuesa", 1590);
 
         Direccion direccion1 = new Direccion("Avenida Siempre Viva, #742");
-        Cliente cliente1 = new Cliente("Homero", "11.111.111-1", direccion1);
+        Cliente cliente1 = new Cliente("Homero Simpson", "11.111.111-1", direccion1);
         OrdenCompra ordenCompra1 = new OrdenCompra("EN CURSO", cliente1, 1);
         
         ordenCompra1.anadirDetalle(2, articulo1);
@@ -40,7 +40,7 @@ public class Tarea1 {
         Articulo articulo3 = new Articulo((float) 2, "Bebida", "Sabor Coca - Cola", 1200);
         Articulo articulo4 = new Articulo((float) 0.6, "Cerveza", "Marca Duff", 1000);
 
-        Cliente cliente2 = new Cliente("Marge", "22.222.222-2", direccion1);
+        Cliente cliente2 = new Cliente("Marge Simpson", "22.222.222-2", direccion1);
         OrdenCompra ordenCompra2 = new OrdenCompra("EN CURSO", cliente2, 2);
         
         ordenCompra2.anadirDetalle(1, articulo3);
