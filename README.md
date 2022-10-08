@@ -7,6 +7,6 @@ Repositorio con las Tareas de la asignatura Programacion 2 de la carrera Ingenie
 
 - [@PabloSanhueza1](https://github.com/PabloSanhueza1) Pablo Sanhueza Yévenes
 - [@TheAmazingLife](https://github.com/TheAmazingLife) Joaquin San Martín Vargas
-![Imagen Duo](Recursos/ImagenDuo.png)
+- ![Imagen Duo](Recursos/ImagenDuo.png)
 
 
