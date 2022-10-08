@@ -10,7 +10,7 @@
                  ||  O  ||          | | |
                  ||__*__||          | | |
                 |~ \___/ ~|         []|[]
-                /=\ /=\ /=\         | | |
+                /=\ /=\ /=\         | | | 
 ________________[_]_[_]_[_]________/_]_[_\_________________________
 */
 package tarea1;
@@ -41,7 +41,7 @@ public class Tarea1 {
         Articulo articulo4 = new Articulo((float) 0.6, "Cerveza", "Marca Duff", 1000);
 
         Cliente cliente2 = new Cliente("Marge Simpson", "22.222.222-2", direccion1);
-        OrdenCompra ordenCompra2 = new OrdenCompra("EN CURSO", cliente2, 2);
+        OrdenCompra ordenCompra2 = new OrdenCompra("EN CURSO", cliente2, 1);
         
         ordenCompra2.anadirDetalle(1, articulo3);
         ordenCompra2.anadirDetalle(12, articulo4);
@@ -61,6 +61,7 @@ public class Tarea1 {
         
         Tarjeta tarjeta = new Tarjeta("DEBITO","#1111",23000,1,ordenCompra3);
         ordenCompra3.finalizarCompra();
+        
         System.out.println(ordenCompra3.ToString());
         
         
