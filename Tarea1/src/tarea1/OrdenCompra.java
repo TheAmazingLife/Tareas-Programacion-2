@@ -37,6 +37,10 @@ class OrdenCompra {
         DetalleOrden detalleOrden = new DetalleOrden(n, articulo);
         pedido.add(detalleOrden);
     }
+    
+    public void finalizarCompra(){
+        estado = "PAGADO";
+    }
 
     public float calcPrecioSinIVA() {
         float ans = 0;
