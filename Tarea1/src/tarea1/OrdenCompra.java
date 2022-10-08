@@ -81,7 +81,7 @@ class OrdenCompra {
         return cliente;
     }
 
-    public String ToString() {
+    public String toString() {
         String string = cliente.toString();
         string += "Estado de la compra: "  + estado + " \n";
         string += "Detalle de orden: \n";
