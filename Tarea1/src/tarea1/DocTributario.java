@@ -7,7 +7,7 @@ abstract class DocTributario {
     protected String numero;
     protected String rut;
     protected LocalDate fecha;
-    protected String direccion;
+    protected Direccion direccion;
 
     public DocTributario(String numero, String rut, LocalDate fecha, Direccion direccion) {
         this.numero = numero;
@@ -28,7 +28,7 @@ abstract class DocTributario {
         return fecha;
     }
 
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
 }

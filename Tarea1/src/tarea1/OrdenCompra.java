@@ -15,13 +15,15 @@ class OrdenCompra {
         this.pedido = pedido;
         this.fecha = LocalDate.now();
         this.cliente = cliente;
+        
+        DocTributario docTributario = null;
 
         switch (doc) {
             case 1:
-                DocTributario docTributario = new Boleta("111", cliente.getRut(), fecha, cliente.getDireccion());
+                docTributario = new Boleta("111", cliente.getRut(), fecha, cliente.getDireccion());
                 break;
             case 2:
-                DocTributario docTributario = new Factura("111", cliente.getRut(), fecha, cliente.getDireccion());
+                docTributario = new Factura("111", cliente.getRut(), fecha, cliente.getDireccion());
                 break;
         }
     }
