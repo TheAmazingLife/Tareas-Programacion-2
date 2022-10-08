@@ -2,58 +2,36 @@ package tarea1;
 
 class DetalleOrden {
 
-    private int cantidad;
-    private float precioTotal;
-    private float precioSinIVA;
-    private float IVA;
-    private float peso;
+    private final int cantidad;
+    private final Articulo articulo;
 
-    public DetalleOrden(Pedido pedido) {
-        cantidad = pedido.getSize();
-        precioTotal = 0;
-        precioSinIVA = 0;
-        IVA = 0;
-        peso = 0;
+    public DetalleOrden(int cantidad, Articulo articulo) {
+        this.cantidad = cantidad;
+        this.articulo = articulo;
     }
 
-    public float calcPrecio(Pedido pedido) {
-        Articulo articulo;
-        for (int i = 0; i < cantidad; i++) {
-            articulo = pedido.getArticulo(i);
-            precioTotal += articulo.getPrecio();
-        }
+    public float calcPrecio() {
+        float precioTotal = (float)(articulo.getPrecio() * cantidad);
         return (float) (precioTotal);
     }
 
-    public float calcPrecioSinIVA(Pedido pedido) {
-        Articulo articulo;
-        for (int i = 0; i < cantidad; i++) {
-            articulo = pedido.getArticulo(i);
-            precioSinIVA += articulo.getPrecio() * 0.81;
-        }
+    public float calcPrecioSinIVA() {
+        float precioSinIVA = (float)(articulo.getPrecio() * 0.81 * cantidad);
         return (float) (precioSinIVA);
     }
 
-    public float calcIVA(Pedido pedido) {
-        Articulo articulo;
-        for (int i = 0; i < pedido.getSize(); i++) {
-            articulo = pedido.getArticulo(i);
-            IVA += articulo.getPrecio() - articulo.getPrecio() * 0.81;
-        }
+    public float calcIVA() {
+        float IVA = (float)(articulo.getPrecio() - articulo.getPrecio() * 0.81 * cantidad);
         return (float) (IVA);
     }
 
-    public float calcPeso(Pedido pedido) {
-        Articulo articulo;
-        for (int i = 0; i < pedido.getSize(); i++) {
-            articulo = pedido.getArticulo(i);
-            peso += articulo.getPeso();
-        }
+    public float calcPeso() {
+        float peso = (float)(articulo.getPeso() * cantidad);
         return (float) (peso);
     }
 
     public String toString() {
-        return "Detalle de orden:\nCantidad: " + cantidad + "\nPrecio Total: " + precioTotal + "\nPrecio sin IVA: "
-                + precioSinIVA + "\nPeso: " + peso + "\n";
+        return "Detalle de orden:\nCantidad: " + cantidad + "\nPrecio Total: " + calcPrecio() + "\nPrecio sin IVA: "
+                + calcPrecioSinIVA() + "\nIva: " + calcIVA() + "\nPeso: " + calcPeso() + "\n";
     }
 }

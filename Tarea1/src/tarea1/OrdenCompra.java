@@ -1,21 +1,22 @@
 package tarea1;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 class OrdenCompra {
 
     private final Cliente cliente;
     private String estado;
-    private Pedido pedido;
     protected LocalDate fecha;
+    protected ArrayList<DetalleOrden> pedido;
 
-    public OrdenCompra(String estado, Pedido pedido, Cliente cliente, int doc) {
+    public OrdenCompra(String estado, Cliente cliente, int doc) {
         this.fecha = LocalDate.now();
         this.estado = estado;
-        this.pedido = pedido;
         this.fecha = LocalDate.now();
         this.cliente = cliente;
-        
+        pedido = new ArrayList();
+
         DocTributario docTributario = null;
 
         switch (doc) {
@@ -28,24 +29,41 @@ class OrdenCompra {
         }
     }
 
-    // DocTributario docTributario = new DocTributario(String numero, String rut,
-    // int fecha);
-    DetalleOrden detalleOrden = new DetalleOrden(pedido);
+    public void anadirDetalle(int n, Articulo articulo) {
+        DetalleOrden detalleOrden = new DetalleOrden(n, articulo);
+        pedido.add(detalleOrden);
+    }
 
     public float calcPrecioSinIVA() {
-        return detalleOrden.calcPrecioSinIVA(pedido);
+        float ans = 0;
+        for (int i = 0; i < pedido.size(); i++) {
+            ans += pedido.get(i).calcPrecioSinIVA();
+        }
+        return ans;
     }
 
     public float calcIVA() {
-        return detalleOrden.calcIVA(pedido);
+        float ans = 0;
+        for (int i = 0; i < pedido.size(); i++) {
+            ans += pedido.get(i).calcIVA();
+        }
+        return ans;
     }
 
     public float calcPrecio() {
-        return detalleOrden.calcPrecio(pedido);
+        float ans = 0;
+        for (int i = 0; i < pedido.size(); i++) {
+            ans += pedido.get(i).calcPrecio();
+        }
+        return ans;
     }
 
     public float calcPeso() {
-        return detalleOrden.calcPeso(pedido);
+        float ans = 0;
+        for (int i = 0; i < pedido.size(); i++) {
+            ans += pedido.get(i).calcPeso();
+        }
+        return ans;
     }
 
     public LocalDate getFecha() {
@@ -58,7 +76,13 @@ class OrdenCompra {
 
     public String ToString() {
         String string = cliente.toString();
-        string += detalleOrden.toString();
+        string += pedido.toString();
         return string;
     }
 }
+
+/*
+OrdenCompra TERMINAR LA COMPRA
+arreglar DetalleOrden a favor
+
+ */
