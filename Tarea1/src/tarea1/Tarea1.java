@@ -13,9 +13,8 @@
                 /=\ /=\ /=\         | | |
 ________________[_]_[_]_[_]________/_]_[_\_________________________
 */
-import java.time.LocalDate;
-
 package tarea1;
+import java.time.LocalDate;
 
 
 public class Tarea1 {
