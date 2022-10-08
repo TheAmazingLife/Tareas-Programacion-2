@@ -1,8 +1,5 @@
 package tarea1;
 
-import Cliente;
-import DetalleOrden;
-import Pedido;
 import java.time.LocalDate;
 
 class OrdenCompra {
@@ -12,13 +9,24 @@ class OrdenCompra {
     private Pedido pedido;
     protected LocalDate fecha;
         
-    public OrdenCompra(String estado, Pedido pedido, Cliente cliente) {
+    public OrdenCompra(String estado, Pedido pedido, Cliente cliente, int doc) {
         this.fecha = LocalDate.now();
         this.estado = estado;
         this.pedido = pedido;
         this.fecha = LocalDate.now();
         this.cliente = cliente;
+        
+        DocTributario docTributario = null;
+        switch (doc) {
+            case 1:
+                docTributario = new Boleta("111",cliente.getRut(),fecha);
+                break;
+            case 2:
+                docTributario = new Factura("111",cliente.getRut(),fecha);
+                break;
+        }   
     }
+    
      //DocTributario docTributario = new DocTributario(String numero, String rut, int fecha); 
     DetalleOrden detalleOrden = new DetalleOrden(pedido);
     

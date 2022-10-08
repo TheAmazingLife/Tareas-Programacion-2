@@ -1,11 +1,8 @@
 package tarea1;
 
-import Pedido;
-
 class DetalleOrden {
 
     private int cantidad;
-    
     private float precioTotal;
     private float precioSinIVA;
     private float IVA;

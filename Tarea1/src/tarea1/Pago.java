@@ -6,17 +6,17 @@ abstract class Pago {
     protected LocalDate fecha;
     protected OrdenCompra ordenCompra;
     protected int numeroCuotas;
+    
+    public Pago(float monto, OrdenCompra ordenCompra) {
+        this.monto = monto;
+        this.ordenCompra = ordenCompra;
+        this.fecha = ordenCompra.getFecha();
+    }
 }
 
 class Efectivo extends Pago{
     public Efectivo(float monto, int numeroCuotas, OrdenCompra ordenCompra) {
-        super();
-        this.monto = monto;
-        this.numeroCuotas = numeroCuotas;
-        fecha = LocalDate.now();
-        this.ordenCompra = ordenCompra;
-        this.fecha = ordenCompra.getFecha();
-        
+        super(monto, numeroCuotas, ordenCompra);
     }
     
     public float calcDevolucion() {
@@ -44,12 +44,7 @@ class Transferencia extends Pago {
     private String banco;
     private String numCuenta;
     public Transferencia(String banco, String numCuenta, float monto, int numeroCuotas, OrdenCompra ordenCompra) {
-        super();
-        this.monto = monto;
-        this.numeroCuotas = numeroCuotas;
-        fecha = LocalDate.now();
-        this.ordenCompra = ordenCompra;
-        this.fecha = ordenCompra.getFecha();
+        super(monto, numeroCuotas, ordenCompra);
         this.banco = banco;
         this.numCuenta = numCuenta;
     }
@@ -72,6 +67,7 @@ class Transferencia extends Pago {
             }
         }
         return devolucion;
+        }
     }
     public String toString() {
         return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
@@ -89,12 +85,7 @@ class Tarjeta extends Pago {
         fecha = LocalDate.now();
     }
     public Tarjeta(String tipo, String numTransaccion, float monto, int numeroCuotas, OrdenCompra ordenCompra) {
-        super();
-        this.monto = monto;
-        this.numeroCuotas = numeroCuotas;
-        fecha = LocalDate.now();
-        this.ordenCompra = ordenCompra;
-        this.fecha = ordenCompra.getFecha();
+        super(monto, numeroCuotas, ordenCompra);
         this.tipo = tipo;
         this.numTransaccion = numTransaccion;
     }
@@ -131,5 +122,6 @@ class Tarjeta extends Pago {
 
 /*
 Agregar el numero de cuotas en el main Efectivo efectivo = new Efectivo(monto, nroCuotas, ordenCompra);
-
+Modificar los constructores en el main de transaccion efectivo y tarjeta
+Constructor de Pago actualizado
 */

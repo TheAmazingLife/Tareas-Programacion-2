@@ -1,29 +1,36 @@
 package tarea1;
 
+import java.util.ArrayList;
+
 class Pedido {
 
     private ArrayList<Articulo> pedido;
-    private int size;
     public Pedido() {
-        size = 0;
         pedido = new ArrayList();
     }
 
     public void addArticulo(Articulo articulo) {
-        size++;
         pedido.add(articulo);
     }
 
-    public Articulo getArticulo(int cual) {
+    public Articulo getArticulo(int pos) {
         if (pedido.isEmpty()) {
             return null;
         } else {
-            Articulo articulo = pedido.get(cual);
+            Articulo articulo = pedido.get(pos);
             return articulo;
         }
     }
-    
+    public ArrayList<Articulo> getPedido(){
+        return pedido;
+    }
     public int getSize(){
-        return size;
+        return pedido.size;
     }
 }
+
+/*
+new features:
+getSize() devuelve la longitud del pedido
+getPedido() devuelve el array list con el pedido
+*/

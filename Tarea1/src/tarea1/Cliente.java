@@ -4,11 +4,12 @@ class Cliente {
 
     private final String nombre;
     private final String rut;
-    private String direccion;
+    private Direccion direccion;
     
     public Cliente(String nombre, String rut, Direccion direccion) {
         this.nombre = nombre;
         this.rut = rut;
+        this.direccion = direccion;
     }
     
     public String getNombre(){
@@ -17,7 +18,7 @@ class Cliente {
     public String getRut(){
         return rut;
     }
-    public String getDireccion(){
+    public Direccion getDireccion(){
         return direccion;
     }
     

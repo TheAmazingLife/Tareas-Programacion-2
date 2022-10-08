@@ -8,6 +8,12 @@ class DocTributario {
     protected LocalDate fecha;
     protected String direccion;
     
+    public DocTributario(String numero, String rut, LocalDate fecha) {
+        this.numero = numero;
+        this.rut = rut;
+        this.fecha = fecha;
+    }
+    
     public String getNumero() {
         return numero;
     }
@@ -17,20 +23,17 @@ class DocTributario {
     public LocalDate getFecha() {
         return fecha;
     }
+    public String getDireccion() {
+        return direccion;
+    }
 }
 
 class Boleta extends DocTributario {
 
-    public Boleta(String numero) {
-        super();
-        this.numero = numero;
+    public Boleta(String numero, String rut, LocalDate fecha) {
+        super(numero, rut, fecha);
     }
     
-    public void ordenBoleta(OrdenCompra orden) {
-        this.rut = orden.getCliente().getRut();
-        this.fecha = orden.getFecha();
-        this.direccion = orden.getCliente().getDireccion();
-    }
     public String toString(){
         return "Detalles Boleta.\nRut: " + rut + "Direccion: " + direccion + "Fecha: " + fecha;
     }
@@ -38,15 +41,8 @@ class Boleta extends DocTributario {
 
 class Factura extends DocTributario {
 
-    public Factura(String numero) {
-        super();
-        this.numero = numero;
-    }
-    
-    public void ordenBoleta(OrdenCompra orden) {
-        this.rut = orden.getCliente().getRut();
-        this.fecha = orden.getFecha();
-        this.direccion = orden.getCliente().getDireccion();
+    public Factura(String numero, String rut, LocalDate fecha) {
+        super(numero, rut, fecha);
     }
     
     public String toString(){
