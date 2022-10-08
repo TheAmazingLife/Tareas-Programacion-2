@@ -1,3 +1,7 @@
+/*
+Contructor
+Articulo articulo = new Articulo(float peso, String nombre, String descripcion, float precio);
+*/
 package tarea1;
 
 class Articulo {

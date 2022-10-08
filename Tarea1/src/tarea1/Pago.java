@@ -1,46 +1,53 @@
-import java.time.LocalDate;
+/*
+Contructor
+Pago pago = new Efectivo(float monto, int numeroCuotas, OrdenCompra ordenCompra);
+Pago pago = new Transferencia(String banco, String numCuenta, float monto, int numeroCuotas, OrdenCompra ordenCompra);
+Pago pago = new Tarjeta(String tipo, String numTransaccion, float monto, int numeroCuotas, OrdenCompra ordenCompra)
+ */
 package tarea1;
 
+import java.time.LocalDate;
+
 abstract class Pago {
+
     protected float monto;
     protected LocalDate fecha;
     protected OrdenCompra ordenCompra;
     protected int numeroCuotas;
 
-    public Pago(float monto, OrdenCompra ordenCompra) {
+    public Pago(float monto, int numeroCuotas, OrdenCompra ordenCompra) {
         this.monto = monto;
-        this.ordenCompra = ordenCompra;
         this.fecha = ordenCompra.getFecha();
+        this.ordenCompra = ordenCompra;
+        this.numeroCuotas = numeroCuotas;
     }
 }
 
 class Efectivo extends Pago {
+
     public Efectivo(float monto, int numeroCuotas, OrdenCompra ordenCompra) {
         super(monto, numeroCuotas, ordenCompra);
     }
 
     public float calcDevolucion() {
         float devolucion = 0;
-        if (numeroCuotas == 0) {
-            if (monto > ordenCompra.calcPrecio()) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            }
+        if (numeroCuotas == 1) {
+            devolucion = monto - ordenCompra.calcPrecio();
         } else {
             float valorCuota = 0;
             valorCuota = ordenCompra.calcPrecio() / numeroCuotas;
-            if (monto >= valorCuota) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            }
+            devolucion = monto - valorCuota;
         }
         return devolucion;
     }
 
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha + " Vuelto: $" + calcDevolucion() + "\n";
     }
 }
 
 class Transferencia extends Pago {
+
     private String banco;
     private String numCuenta;
 
@@ -58,24 +65,9 @@ class Transferencia extends Pago {
         return numCuenta;
     }
 
-    public float calcDevolucion() {
-        float devolucion = 0;
-        if (numeroCuotas == 0) {
-            if (monto > ordenCompra.calcPrecio()) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            } else {
-                float valorCuota = 0;
-                valorCuota = ordenCompra.calcPrecio() / numeroCuotas;
-                if (monto >= valorCuota) {
-                    devolucion = ordenCompra.calcPrecio() - monto;
-                }
-            }
-            return devolucion;
-        }
-    }
-
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n";
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
+                + " Banco: " + banco + " Numero de cuenta: " + numCuenta + "\n";
     }
 }
 
@@ -102,31 +94,12 @@ class Tarjeta extends Pago {
         return numTransaccion;
     }
 
-    public float calcDevolucion() {
-        float devolucion = 0;
-        if (numeroCuotas == 0) {
-            if (monto > ordenCompra.calcPrecio()) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            }
-        } else {
-            float valorCuota = 0;
-            valorCuota = ordenCompra.calcPrecio() / numeroCuotas;
-            if (monto >= valorCuota) {
-                devolucion = ordenCompra.calcPrecio() - monto;
-            }
-        }
-        return devolucion;
-    }
-
     public String toString() {
-        return "Dinero: " + monto + "\n" + "Fecha: " + fecha + "\n" +
-                "Tipo: " + tipo + "Numero de Transaccion: " + fecha;
+        return "Pago. Dinero: " + monto + " Total a pagar: " + ordenCompra.calcPrecio() + " Numero de cuotas: " + numeroCuotas + " Fecha: " + fecha
+                + "Tipo: " + tipo + " Numero de Transaccion: " + fecha + "\n";
     }
 }
 
 /*
- * Agregar el numero de cuotas en el main Efectivo efectivo = new
- * Efectivo(monto, nroCuotas, ordenCompra);
- * Modificar los constructores en el main de transaccion efectivo y tarjeta
- * Constructor de Pago actualizado
+METODO calcular numero de cuotas PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
  */

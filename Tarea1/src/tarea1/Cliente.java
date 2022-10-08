@@ -1,3 +1,7 @@
+/*
+Contructor
+Cliente cliente = new Cliente(String nombre, String rut, Direccion direccion);
+*/
 package tarea1;
 
 //hola
@@ -24,5 +28,7 @@ class Cliente {
     public Direccion getDireccion() {
         return direccion;
     }
-
+    public String toString() {
+        return "Nombre: " + nombre + " Rut: " + rut + " Direccion: " + direccion.getDireccion() + "\n";
+    }
 }
