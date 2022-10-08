@@ -28,5 +28,7 @@ class Cliente {
     public Direccion getDireccion() {
         return direccion;
     }
-
+    public String toString() {
+        return "Nombre: " + nombre + " Rut: " + rut + " Direccion: " + direccion.getDireccion() + "\n";
+    }
 }

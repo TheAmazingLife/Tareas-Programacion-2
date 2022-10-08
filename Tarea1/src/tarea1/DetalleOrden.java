@@ -25,7 +25,7 @@ class DetalleOrden {
     }
 
     public float calcIVA() {
-        float IVA = (float) (articulo.getPrecio() - articulo.getPrecio() * 0.81 * cantidad);
+        float IVA = (float) (articulo.getPrecio() * cantidad - articulo.getPrecio() * 0.81 * cantidad);
         return (float) (IVA);
     }
 
@@ -35,7 +35,7 @@ class DetalleOrden {
     }
 
     public String toString() {
-        return "Detalle de orden:\nCantidad: " + cantidad + "\nPrecio Total: " + calcPrecio() + "\nPrecio sin IVA: "
-                + calcPrecioSinIVA() + "\nIva: " + calcIVA() + "\nPeso: " + calcPeso() + "\n";
+        return "Detalle de orden: " + articulo.getNombre() + " Cantidad: " + cantidad + " Precio Total: $" + calcPrecio() + " Precio sin IVA: $"
+                + calcPrecioSinIVA() + " Iva: $" + calcIVA() + " Peso: " + calcPeso() + " Kg.\n";
     }
 }

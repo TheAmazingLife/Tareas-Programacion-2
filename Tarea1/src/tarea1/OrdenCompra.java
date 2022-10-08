@@ -80,7 +80,9 @@ class OrdenCompra {
 
     public String ToString() {
         String string = cliente.toString();
-        string += pedido.toString();
+        for (int i = 0; i < pedido.size(); i++) {
+            string += pedido.get(i).toString();
+        }
         return string;
     }
 }
