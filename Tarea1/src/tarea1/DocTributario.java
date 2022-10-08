@@ -1,3 +1,7 @@
+/*
+Contructor
+DocTributario docTributario = new DocTributario(String numero, String rut, LocalDate fecha, Direccion direccion);
+ */
 package tarea1;
 
 import java.time.LocalDate;
